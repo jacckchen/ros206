@@ -1,0 +1,6 @@
+<launch>
+
+    <include file="$(find rplidar_ros)/launch/gmapping.launch" />
+    <include file="/home/agrotech/fz/src/nav_demo/launch/nav05_path.launch" />
+
+</launch>

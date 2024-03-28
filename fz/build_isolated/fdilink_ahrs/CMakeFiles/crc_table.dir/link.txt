@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC  -std=c++0x -O2 -g -DNDEBUG  -shared -Wl,-soname,libcrc_table.so -o /home/agrotech/fz/devel_isolated/fdilink_ahrs/lib/libcrc_table.so CMakeFiles/crc_table.dir/src/crc_table.cpp.o 

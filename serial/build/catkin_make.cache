@@ -1,0 +1,2 @@
+serial_demo
+-DCMAKE_BUILD_TYPE=RelWithDebInfo -DCATKIN_DEVEL_PREFIX=/home/agrotech/serial/devel -DCMAKE_INSTALL_PREFIX=/home/agrotech/serial/install -G Unix Makefiles

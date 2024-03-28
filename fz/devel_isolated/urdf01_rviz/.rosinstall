@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/agrotech/fz/devel_isolated/urdf01_rviz/setup.sh

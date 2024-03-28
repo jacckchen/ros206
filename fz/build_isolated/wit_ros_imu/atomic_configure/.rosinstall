@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/agrotech/fz/devel_isolated/wit_ros_imu/setup.sh

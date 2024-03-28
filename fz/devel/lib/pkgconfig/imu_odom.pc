@@ -1,0 +1,8 @@
+prefix=/home/agrotech/fz/devel
+
+Name: imu_odom
+Description: Description of imu_odom
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

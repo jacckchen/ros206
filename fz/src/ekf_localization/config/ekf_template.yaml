@@ -1,0 +1,123 @@
+frequency: 30 # 表示状态更新的频率
+
+silent_tf_failure: false
+
+sensor_timeout: 0.1
+
+# 我们使用的是2d车，因此开启2d模式
+two_d_mode: true
+
+transform_time_offset: 0.0
+
+transform_timeout: 0.0
+
+print_diagnostics: true
+
+debug: false
+
+debug_out_file: /path/to/debug/file.txt
+
+publish_tf: false
+
+publish_acceleration: false
+
+filter_type: ekf_localization_node/EKF
+
+# 设置状态变量和观测变量
+state_var_names: [x, y, z, roll, pitch, yaw, x_vel, y_vel, z_vel, roll_vel, pitch_vel, yaw_vel]
+
+# 我们只用此package来融合odom和imu作为更准的odom，因此world_frame配置为 odom
+odom_frame: odom                 # Defaults to "odom" if unspecified
+
+base_link_frame: base_footprint  # Defaults to "base_link" if unspecified
+
+world_frame: odom                # Defaults to the value of odom_frame if unspecified
+
+# 设置传感器的协方差矩阵
+odom0: [0.1, 0, 0, 0, 0, 0, 
+        0, 0.1, 0, 0, 0, 0, 
+        0, 0, 0.1, 0, 0, 0, 
+        0, 0, 0, 0.5, 0, 0, 
+        0, 0, 0, 0, 0.5, 0, 
+        0, 0, 0, 0, 0, 0.5]
+
+imu0: [0.05, 0, 0, 0, 0, 0, 
+       0, 0.05, 0, 0, 0, 0, 
+       0, 0, 0.05, 0, 0, 0, 
+       0, 0, 0, 0.05, 0, 0, 
+       0, 0, 0, 0, 0.05, 0, 
+       0, 0, 0, 0, 0, 0.05]
+
+gps0: [0.05, 0, 0, 0, 0, 0, 
+       0, 0.05, 0, 0, 0, 0, 
+       0, 0, 0.05, 0, 0, 0, 
+       0, 0, 0, 0.03, 0, 0, 
+       0, 0, 0, 0, 0.03, 0, 
+       0, 0, 0, 0, 0, 0.03]
+
+# odom0: /odom
+# odom0_config: [false, false, false,   # x,   y,   z
+#                false, false, false,   # r,   p,   w (yaw)
+#                true,  true,  true,    # dx,  dy,  dz
+#                false, false, true,    # dr,  dp,  dw
+#                false, false, false]
+
+odom0: /odom
+odom0_config: [false, false, false,  # 位置 (x, y, z)
+               false, false, false, # 加速度
+               true, true, true, # 线速度
+               false, false, false, # 角速度
+               false, false, false] # 姿态
+odom0_queue_size: 2
+odom0_nodelay: false
+odom0_differential: false
+odom0_relative: false
+odom0_pose_rejection_threshold: 5
+odom0_twist_rejection_threshold: 1
+
+odom0: odometry/gps
+odom0_config: [true,  true,  false,   # x,   y,   z
+               false, false, false,   # r,   p,   w (yaw)
+               false, false, false,   # dx,  dy,  dz
+               false, false, false,   # dr,  dp,  dw
+               false, false, false]   # ddx, ddy, ddz
+odom0_differential: false
+odom0_nodelay: false
+odom0_queue_size: 10
+
+
+imu0: /imu
+imu0_config: [false, false, false, # 位置
+              true, true, true, # 加速度
+              false, false, false, # 线速度
+              true, true, true, # 角速度
+              true, true, true] # 姿态
+imu0_nodelay: false
+imu0_differential: false
+imu0_relative: false
+imu0_queue_size: 5
+imu0_remove_gravitational_acceleration: true
+imu0_pose_rejection_threshold: 0.8
+imu0_twist_rejection_threshold: 1.8
+imu0_linear_acceleration_rejection_threshold: 0.8
+
+# 添加 GPS 配置
+gps0: /fix
+gps0_config: [true, true, true,  # 位置 (x, y, z)
+              false, false, false, # 加速度
+              true, true, true, # 线速度
+              false, false, false, # 角速度
+              false, false, false] # 姿态
+gps0_queue_size: 5
+gps0_nodelay: false
+gps0_differential: false
+gps0_relative: true
+gps0_pose_rejection_threshold: 2
+gps0_twist_rejection_threshold: 1
+
+# 设置粒子滤波器参数
+odom0_params: [initial_estimate: [0.0, 0.0, 0.0], initial_estimate_covariance: [1e-6, 0, 0, 0, 0, 0, 0, 1e-6, 0, 0, 0, 0, 0, 0, 1e-6]]
+
+imu0_params: [initial_estimate: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0], initial_estimate_covariance: [0.05, 0, 0, 0, 0, 0, 0, 0.05, 0, 0, 0, 0, 0, 0, 0.05, 0, 0, 0, 0, 0, 0, 0.05, 0, 0, 0, 0, 0, 0, 0.05]]
+
+gps0_params: [initial_estimate: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0], initial_estimate_covariance: [0.1, 0, 0, 0, 0, 0, 0, 0]]

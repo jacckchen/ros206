@@ -1,0 +1,8 @@
+prefix=/home/agrotech/fz/devel_isolated/nav_demo
+
+Name: nav_demo
+Description: Description of nav_demo
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

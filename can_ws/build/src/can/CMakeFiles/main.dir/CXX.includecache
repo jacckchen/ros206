@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/agrotech/can_ws/src/src/can/include/controlcan.h
+
+/home/agrotech/can_ws/src/src/can/src/main.cpp
+stdio.h
+-
+sys/types.h
+-
+sys/stat.h
+-
+fcntl.h
+-
+pthread.h
+-
+controlcan.h
+/home/agrotech/can_ws/src/src/can/src/controlcan.h
+ctime
+-
+cstdlib
+-
+unistd.h
+/home/agrotech/can_ws/src/src/can/src/unistd.h
+

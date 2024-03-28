@@ -1,0 +1,2 @@
+send_goals
+-DCMAKE_BUILD_TYPE=RelWithDebInfo -DCATKIN_DEVEL_PREFIX=/home/agrotech/navigation_camera/devel -DCMAKE_INSTALL_PREFIX=/home/agrotech/navigation_camera/install -G Unix Makefiles

@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/agrotech/fz/devel_isolated/arbotix_sensors/setup.sh

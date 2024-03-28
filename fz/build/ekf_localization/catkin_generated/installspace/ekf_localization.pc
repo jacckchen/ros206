@@ -1,0 +1,8 @@
+prefix=/home/agrotech/fz/install
+
+Name: ekf_localization
+Description: Description of ekf_localization
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

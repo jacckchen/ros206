@@ -1,0 +1,114 @@
+<robot name="mycar_text" xmlns:xacro="http://wiki.ros.org/xacro">
+    <xacro:property name="footprint_radius" value="0.001"/>
+    <link name="base_footprint">
+        <visual>
+            <geometry>
+                <sphere radius="${footprint_radius}" />
+            </geometry>
+        </visual>
+    </link>
+    <!-- 底盘 -->
+    <xacro:property name="base_length" value="0.86"/>
+    <xacro:property name="base_width" value="0.60"/>
+    <xacro:property name="base_height" value="0.25"/>
+    <xacro:property name="lidi" value="0.08"/>
+    <xacro:property name="base_joint_z" value="${base_height}/2+${lidi}"/>
+    <link name="base_link">
+        <visual>
+            <geometry>
+                <box size="0.86 0.60 0.25" />
+            </geometry>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <material name="car_color">
+                    <color rgba="1 0 0 0.5"/>
+                </material>
+        </visual>
+    </link>
+    <!-- joint -->
+    <joint name="link2footprint" type="fixed">
+        <parent link="base_footprint"/>
+        <child link="base_link"/>
+        <origin xyz="0 0 0.205" rpy="0 0 0"/>
+    </joint>
+    <!-- 属性 -->
+    <xacro:property name="big_wheel_radius" value="0.125" />
+    <xacro:property name="small_wheel_radius" value="0.09" />
+    <xacro:property name="wheel_length" value="0.06" />
+    <xacro:property name="wanxiang_radius" value="0.08" />
+    <xacro:property name="PI" value="3.1415927" />
+    <xacro:property name="wheel_joint_z" value="${base_height/2-0.3}" />
+    <xacro:macro name="wheel_func_big" params="wheel_name flag1 flag2 ">
+        <!-- 驱动轮left_front_big_wheel -->
+        <link name="${wheel_name}_big_wheel">
+            <visual>
+                <geometry>
+                    <cylinder radius="${big_wheel_radius}" length="${wheel_length}" />
+                </geometry>
+                    <origin xyz="0 0 0" rpy="${PI/2} 0 0" />
+                    <material name="${wheel_name}_big_wheel_color">
+                        <color rgba="0 0 1 0.7"/>
+                    </material>
+            </visual>
+        </link>
+    <!-- joint -->
+        <joint name="${wheel_name}_wheel_joint" type="continuous">
+            <parent link="base_link"/>
+            <child link="${wheel_name}_big_wheel"/>
+            <origin xyz="0 ${0.3*flag2} -0.08" rpy="0 0 0"/>
+            <axis xyz="0 1 0"/>
+        </joint>
+    </xacro:macro>
+    <!-- <xacro:wheel_func_big wheel_name="left_front" flag1="1" flag2="1"/>
+    <xacro:wheel_func_big wheel_name="right_front" flag1="1" flag2="-1"/> -->
+    <xacro:wheel_func_big wheel_name="base_l" flag1="-1" flag2="1"/>
+    <xacro:wheel_func_big wheel_name="base_r" flag1="-1" flag2="-1"/>
+
+    <xacro:macro name="wheel_func_small" params="wheel_name flag1 flag2 ">
+    <!-- 驱动轮left_front_small_wheel -->
+    <link name="${wheel_name}_small_wheel">
+        <visual>
+            <geometry>
+                <cylinder radius="${small_wheel_radius}" length="${wheel_length}" />
+            </geometry>
+                <origin xyz="0 0 0" rpy="${PI/2} 0 0" />
+                <material name="${wheel_name}_small_wheel_color">
+                    <color rgba="0 0 1 0.7"/>
+                </material>
+        </visual>
+    </link>
+   <!-- joint -->
+    <joint name="${wheel_name}_small_wheel2link" type="continuous">
+        <parent link="base_link"/>
+        <child link="${wheel_name}_small_wheel"/>
+        <origin xyz="${0.10*flag1} ${0.18*flag2} -0.125" rpy="0 0 0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+</xacro:macro>
+<!-- <xacro:wheel_func_small wheel_name="left_front" flag1="1" flag2="1"/>
+<xacro:wheel_func_small wheel_name="right_front" flag1="1" flag2="-1"/>
+<xacro:wheel_func_small wheel_name="left_back" flag1="-1" flag2="1"/>
+<xacro:wheel_func_small wheel_name="right_back" flag1="-1" flag2="-1"/> -->
+<xacro:property name="wanxiang_small_wheel_radius" value="0.08"/>
+        <xacro:property name="wanxiang_small_joint_z" value="${-1*(base_height/2+lidi-wanxiang_small_wheel_radius)}"/>
+        <xacro:macro name="wanxiang_small_wheel_func" params=" wanxiang_small_wheel_name flag" >
+         <link name="${wanxiang_small_wheel_name}_wheel">
+            <visual>
+                <geometry>
+                    <sphere radius="${wanxiang_small_wheel_radius}" />
+                </geometry>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <material name="wanxiang_wheel_color">
+                        <color rgba="0 0 0 0.3" />
+                </material>
+            </visual> 
+        </link>
+        <joint name="${wanxiang_small_wheel_name}2link" type="continuous">
+            <parent link="base_link" />
+            <child link="${wanxiang_small_wheel_name}_wheel" />
+            <origin xyz="${0.25*flag} 0 ${wanxiang_small_joint_z}" rpy="0 0 0" />
+            <axis xyz="0 1 0"/>
+        </joint>
+         </xacro:macro>
+         <xacro:wanxiang_small_wheel_func wanxiang_small_wheel_name="front" flag="1"/>
+         <xacro:wanxiang_small_wheel_func wanxiang_small_wheel_name="back" flag="-1"/>
+</robot>

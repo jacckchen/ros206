@@ -1,0 +1,2 @@
+arbotix_ros/arbotix:arbotix_ros/arbotix_controllers:arbotix_ros/arbotix_firmware:arbotix_ros/arbotix_msgs:arbotix_ros/arbotix_python:arbotix_ros/arbotix_sensors:ekf_localization:fdilink_ahrs_ROS1/fdilink_ahrs:imu_gps_localization:nav_demo:ros_imu_ws/src:rplidar_ros:urdf01_rviz:urdf02_gazebo
+-DCMAKE_BUILD_TYPE=RelWithDebInfo -DCATKIN_DEVEL_PREFIX=/home/agrotech/fz/devel -DCMAKE_INSTALL_PREFIX=/home/agrotech/fz/install -G Unix Makefiles

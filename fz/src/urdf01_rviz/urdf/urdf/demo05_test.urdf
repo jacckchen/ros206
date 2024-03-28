@@ -1,0 +1,182 @@
+<robot name="mycar_text">
+    <link name="base_footprint">
+        <visual>
+            <geometry>
+                <sphere radius="0.001" />
+            </geometry>
+        </visual>
+    </link>
+   <!-- 底盘 -->
+    <link name="base_link">
+        <visual>
+            <geometry>
+                <box size="0.86 0.60 0.25" />
+            </geometry>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <material name="car_color">
+                    <color rgba="1 0 0 0.5"/>
+                </material>
+        </visual>
+    </link>
+   <!-- joint -->
+    <joint name="link2footprint" type="fixed">
+        <parent link="base_footprint"/>
+        <child link="base_link"/>
+        <origin xyz="0 0 0.215" rpy="0 0 0"/>
+    </joint>
+    <!-- 驱动轮left_front_big_wheel -->
+    <link name="left_front_big_wheel">
+        <visual>
+            <geometry>
+                <cylinder radius="0.12" length="0.1" />
+            </geometry>
+                <origin xyz="0 0 0" rpy="1.57 0 0" />
+                <material name="left_front_big_wheel_color">
+                    <color rgba="0 0 1 0.7"/>
+                </material>
+        </visual>
+    </link>
+   <!-- joint -->
+    <joint name="left_front_big_wheel2link" type="continuous">
+        <parent link="base_link"/>
+        <child link="left_front_big_wheel"/>
+        <origin xyz="0.32 0.18 -0.095" rpy="0 0 0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <!-- 驱动轮right_front_big_wheel -->
+    <link name="right_front_big_wheel">
+        <visual>
+            <geometry>
+                <cylinder radius="0.12" length="0.1" />
+            </geometry>
+                <origin xyz="0 0 0" rpy="1.57 0 0" />
+                <material name="right_front_big_wheel_color">
+                    <color rgba="0 0 1 0.7"/>
+                </material>
+        </visual>
+    </link>
+   <!-- joint -->
+    <joint name="right_front_big_wheel2link" type="continuous">
+        <parent link="base_link"/>
+        <child link="right_front_big_wheel"/>
+        <origin xyz="0.32 -0.18 -0.095" rpy="0 0 0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <!-- 驱动轮left_back_big_wheel -->
+    <link name="left_back_big_wheel">
+        <visual>
+            <geometry>
+                <cylinder radius="0.12" length="0.1" />
+            </geometry>
+                <origin xyz="0 0 0" rpy="1.57 0 0" />
+                <material name="left_back_big_wheel_color">
+                    <color rgba="0 0 1 0.7"/>
+                </material>
+        </visual>
+    </link>
+   <!-- joint -->
+    <joint name="left_back_big_wheel2link" type="continuous">
+        <parent link="base_link"/>
+        <child link="left_back_big_wheel"/>
+        <origin xyz="-0.32 0.18 -0.095" rpy="0 0 0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <!-- 驱动轮right_back_big_wheel -->
+    <link name="right_back_big_wheel">
+        <visual>
+            <geometry>
+                <cylinder radius="0.12" length="0.1" />
+            </geometry>
+                <origin xyz="0 0 0" rpy="1.57 0 0" />
+                <material name="right_back_big_wheel_color">
+                    <color rgba="0 0 1 0.7"/>
+                </material>
+        </visual>
+    </link>
+   <!-- joint -->
+    <joint name="right_back_big_wheel2link" type="continuous">
+        <parent link="base_link"/>
+        <child link="right_back_big_wheel"/>
+        <origin xyz="-0.32 -0.18 -0.095" rpy="0 0 0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+    <!-- 驱动轮left_front_small_wheel -->
+    <link name="left_front_small_wheel">
+        <visual>
+            <geometry>
+                <cylinder radius="0.09" length="0.1" />
+            </geometry>
+                <origin xyz="0 0 0" rpy="1.57 0 0" />
+                <material name="left_front_small_wheel_color">
+                    <color rgba="0 0 1 0.7"/>
+                </material>
+        </visual>
+    </link>
+   <!-- joint -->
+    <joint name="left_front_small_wheel2link" type="continuous">
+        <parent link="base_link"/>
+        <child link="left_front_small_wheel"/>
+        <origin xyz="0.10 0.18 -0.125" rpy="0 0 0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+     <!-- 驱动轮right_front_small_wheel -->
+     <link name="right_front_small_wheel">
+        <visual>
+            <geometry>
+                <cylinder radius="0.09" length="0.1" />
+            </geometry>
+                <origin xyz="0 0 0" rpy="1.57 0 0" />
+                <material name="right_front_small_wheel_color">
+                    <color rgba="0 0 1 0.7"/>
+                </material>
+        </visual>
+    </link>
+   <!-- joint -->
+    <joint name="right_front_small_wheel2linl" type="continuous">
+        <parent link="base_link"/>
+        <child link="right_front_small_wheel"/>
+        <origin xyz="0.10 -0.18 -0.125" rpy="0 0 0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+    <!-- 驱动轮left_back_small_wheel -->
+    <link name="left_back_small_wheel">
+        <visual>
+            <geometry>
+                <cylinder radius="0.09" length="0.1" />
+            </geometry>
+                <origin xyz="0 0 0" rpy="1.57 0 0" />
+                <material name="left_back_small_wheel_color">
+                    <color rgba="0 0 1 0.7"/>
+                </material>
+        </visual>
+    </link>
+   <!-- joint -->
+    <joint name="left_back_small_wheel2link" type="continuous">
+        <parent link="base_link"/>
+        <child link="left_back_small_wheel"/>
+        <origin xyz="-0.10 0.18 -0.125" rpy="0 0 0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+    <!-- 驱动轮right_back_small_wheel -->
+    <link name="right_back_small_wheel">
+        <visual>
+            <geometry>
+                <cylinder radius="0.09" length="0.1" />
+            </geometry>
+                <origin xyz="0 0 0" rpy="1.57 0 0" />
+                <material name="right_back_small_wheel_color">
+                    <color rgba="0 0 1 0.7"/>
+                </material>
+        </visual>
+    </link>
+   <!-- joint -->
+    <joint name="right_back_small_wheel2link" type="continuous">
+        <parent link="base_link"/>
+        <child link="right_back_small_wheel"/>
+        <origin xyz="-0.10 -0.18 -0.125" rpy="0 0 0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+</robot>

@@ -1,0 +1,6 @@
+image: /home/agrotech/fz/src/nav_demo/map/map111.pgm
+resolution: 0.05
+origin: [-13.3849, -9.69513, 0.0]
+negate: 0
+occupied_thresh: 0.65
+free_thresh: 0.196

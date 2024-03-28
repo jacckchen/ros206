@@ -1,0 +1,39 @@
+<launch>
+  <!-- 第一个EKF节点 -->
+  <!-- <node pkg="robot_localization" type="ekf_localization_node" name="ekf_01" output="screen">
+    <rosparam command="load" file="$(find ekf_localization)/config/ekf_01.yaml"/>
+    <remap from="/odometry/filtered" to ="/odometry/filtered_01" />
+  </node> -->
+
+  <!-- navsat_transform_node：用于将GPS数据转换为机器人坐标系中的位置 -->
+  <node pkg="robot_localization" type="navsat_transform_node" name="navsat_transform" output="screen">
+    <rosparam command="load" file="$(find ekf_localization)/config/navsat_transform.yaml"/>
+    <!-- <param name="odometry_topic" value="/odometry/filtered_map"/> -->
+    <remap from="/odometry/filtered" to="/odom" />
+    <remap from="/gps/fix" to="/fix" />
+    <remap from="/imu/data" to="/imu" />
+
+    <!-- 如果你的IMU或GPS话题名称与默认值不同，你可能需要添加相应的remap标签 -->
+  </node>
+
+    <!-- 启动 GPS 到 Pose 转换节点 -->
+  <!-- <node pkg="ekf_localization" type="gps_to_pose.py" name="gps_to_pose" output="screen"> -->
+        <!-- 如果你需要设置参数，可以像这样添加 -->
+        <!-- <param name="frame_id" value="map" />
+  </node> -->
+
+  <!-- 启动 odom 到 TwistWithCovariance 的转换节点 -->
+  <!-- <node pkg="ekf_localization" type="odom_to_twist.py" name="odom_to_twist" output="screen">
+  </node> -->
+
+
+  <!-- 第二个EKF节点 -->  
+  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_odom" output="screen">
+    <rosparam command="load" file="$(find ekf_localization)/config/ekf_odom.yaml"/>
+    <remap from="/odometry/filtered" to="/odometry/filtered_odom" />
+  </node>
+
+  <node pkg="tf2_ros" type="static_transform_publisher" name="gps_to_base_link_broadcaster" args="0 0 0 0 0 0 base_footprint navsat_link">
+  </node>
+
+</launch>

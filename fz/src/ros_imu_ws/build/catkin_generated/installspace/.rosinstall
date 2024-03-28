@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/daiwenhui/ros_imu_ws/install/setup.sh

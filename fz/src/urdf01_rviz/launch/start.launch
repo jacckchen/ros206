@@ -1,0 +1,7 @@
+<launch>
+
+    <include file="$(find rplidar_ros)/launch/rplidar_s2.launch" />
+    <include file="$(find fdilink_ahrs)/launch/ahrs_data.launch" />
+    <include file="$(find urdf01_rviz)/launch/demo07_control.launch" />
+
+</launch>

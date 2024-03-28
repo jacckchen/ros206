@@ -1,0 +1,24 @@
+<robot name="mycar_text" xmlns:xacro="http://wiki.ros.org/xacro">
+<xacro:property name="imu_length" value="0.01"/>
+<xacro:property name="imu_width" value="0.01"/>
+<xacro:property name="imu_height" value="0.01"/>
+<xacro:property name="joint_imu_x" value="0.34"/>
+<xacro:property name="joint_imu_y" value="0"/>
+<xacro:property name="joint_imu_z" value="0.15"/>
+<link name="imu_link">
+    <visual>
+        <geometry>
+            <box size="${imu_length} ${imu_width} ${imu_height}"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <material name="black">
+            <color rgba="0 1 0 0.8"/>
+        </material>
+    </visual>
+</link>
+<joint name="imu2base" type="fixed">
+    <parent link="base_link"/>
+    <child link="imu_link" />
+    <origin xyz="${joint_imu_x} ${joint_imu_y} ${joint_imu_z}" rpy="0 0 0"/>
+</joint>
+</robot>
